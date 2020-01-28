@@ -2,7 +2,7 @@
 # coding=utf-8
 
 # <bitbar.title>Wuhan pneumonia data</bitbar.title>
-# <bitbar.version>v0.1</bitbar.version>
+# <bitbar.version>v0.11</bitbar.version>
 # <bitbar.author>Yifen Wu</bitbar.author>
 # <bitbar.author.github>Anthonyeef</bitbar.author.github>
 # <bitbar.desc>Wuhan pneumonia is spreading in the world, mainly in China. This plugin will show information (people having pneumonia, people dead because of pneumonia, and people who are cured from this pneumonia) for each province in China.</bitbar.desc>
@@ -13,6 +13,7 @@
 import requests
 import re
 import json
+import os
 
 # 填写想看到的省份的名字，如
 # targetProvinceName = {"北京", "湖北", "广东"}
@@ -25,7 +26,7 @@ additionProvinceName = {"北京", "广东"}
 
 # 武汉加油
 
-def showProvinceInfo(province):
+def showProvinceInfo(province, textColor):
     provinceName = province.get('provinceShortName')
     provinceConfirmedCount = province.get('confirmedCount')
     provinceDeadCount = province.get('deadCount')
@@ -33,20 +34,25 @@ def showProvinceInfo(province):
 
     displayString = "%s 确: %s 亡: %s 愈: %s" % (
         provinceName, provinceConfirmedCount, provinceDeadCount, provinceCuredCount)
-    print(displayString + " | color=white")
+    print(displayString)
 
     comment = province.get("comment")
     if comment:
-        print('--' + comment + ' | color = white')
+        print('--' + comment + ' | color=' + textColor)
 
     cityList = province.get('cities')
     for city in cityList:
         cityDataStr = "%s 确：%s 亡：%s 愈：%s" % (city.get('cityName'), city.get(
             'confirmedCount'), city.get('deadCount'), city.get('curedCount'))
-        print('--' + cityDataStr + " | color = white")
+        print('--' + cityDataStr + ' | color=' + textColor)
 
 
 def main():
+    bitBarDarkMode = os.getenv('BitBarDarkMode', 0)
+    textColor = "black"
+    if bitBarDarkMode:
+        textColor = "white"
+
     response = requests.get('https://3g.dxy.cn/newh5/view/pneumonia')
     response.encoding = 'utf-8'
 
@@ -76,20 +82,20 @@ def main():
 
     if len(targetProvinceName) > 0:
         for province in jsondata:
-            showProvinceInfo(province)
+            showProvinceInfo(province, textColor)
     else:
         for index in range(5):
             province = jsondata[index]
             provinceName = province.get('provinceShortName')
             if provinceName not in additionProvinceName:
-                showProvinceInfo(province)
+                showProvinceInfo(province, textColor)
     
     print('---')
 
     for province in jsondata:
         provinceName = province.get('provinceShortName')
         if provinceName in additionProvinceName:
-            showProvinceInfo(province)
+            showProvinceInfo(province, textColor)
 
 
 if __name__ == "__main__":
