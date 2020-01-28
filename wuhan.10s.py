@@ -1,6 +1,15 @@
 #!/usr/local/bin/python3
 # coding=utf-8
 
+# <bitbar.title>Wuhan pneumonia data</bitbar.title>
+# <bitbar.version>v0.1</bitbar.version>
+# <bitbar.author>Yifen Wu</bitbar.author>
+# <bitbar.author.github>Anthonyeef</bitbar.author.github>
+# <bitbar.desc>Wuhan pneumonia is spreading in the world, mainly in China. This plugin will show information (people having pneumonia, people dead because of pneumonia, and people who are cured from this pneumonia) for each province in China.</bitbar.desc>
+# <bitbar.image>https://tva1.sinaimg.cn/large/006tNbRwly1gbccqabcaoj30tw0lc4l6.jpg</bitbar.image>
+# <bitbar.dependencies>python</bitbar.dependencies>
+# <bitbar.abouturl>https://github.com/Anthonyeef/wuhan-virus-bitbar-plugin</bitbar.abouturl>
+
 import requests
 import re
 import json
