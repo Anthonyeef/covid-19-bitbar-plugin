@@ -1,4 +1,5 @@
 //武汉加油  中国加油
+//作者：Demonsec666
 package main
 
 import (
@@ -17,7 +18,6 @@ import (
 func main() {
 
 	app := bitbar.New()
-	app.StatusLine("全国新型肺炎疫情实时动态")
 
 	submenu := app.NewSubMenu()
 
@@ -48,7 +48,18 @@ func main() {
 	if err != nil {
 		log.Fatalln(err)
 	}
-
+	dom.Find("#getStatisticsService").Each(func(i int, selection *goquery.Selection) {
+		str := selection.Text()
+		str = strings.Replace(str, "try { window.getStatisticsService = ", ``, -1)
+		str = strings.Replace(str, "]}catch(e){}", ``, -1)
+		all_confirmedCount := gjson.Get(str, "confirmedCount").String() //确诊
+		all_suspectedCount := gjson.Get(str, "suspectedCount").String() //疑似
+		all_curedCount := gjson.Get(str, "curedCount").String()         //治愈
+		all_deadCount := gjson.Get(str, "deadCount").String()           //死亡
+		// println(all_confirmedCount, all_curedCount, all_deadCount, all_suspectedCount) // 打印全国
+		all := " 全国确诊:" + all_confirmedCount + " 疑似:" + all_suspectedCount + " 治愈:" + all_curedCount + " 死亡:" + all_deadCount
+		app.StatusLine(all)
+	})
 	dom.Find("#getAreaStat").Each(func(i int, selection *goquery.Selection) {
 		str := selection.Text()
 		str = strings.Replace(str, "try { window.getAreaStat = [", `{"china": [`, -1)
