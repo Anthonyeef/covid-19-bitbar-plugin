@@ -57,7 +57,7 @@ func main() {
 		all_curedCount := gjson.Get(str, "curedCount").String()         //治愈
 		all_deadCount := gjson.Get(str, "deadCount").String()           //死亡
 		// println(all_confirmedCount, all_curedCount, all_deadCount, all_suspectedCount) // 打印全国
-		all := " 全国确诊:" + all_confirmedCount + " 疑似:" + all_suspectedCount + " 治愈:" + all_curedCount + " 死亡:" + all_deadCount
+		all := " 全国确诊:" + all_confirmedCount + " 疑似:" + all_suspectedCount + " 死亡:" + all_deadCount + " 治愈:" + all_curedCount
 		app.StatusLine(all)
 	})
 	dom.Find("#getAreaStat").Each(func(i int, selection *goquery.Selection) {
@@ -93,6 +93,49 @@ func main() {
 			// println(provinceName, confirmedCount, suspectedCount, deadCount, curedCount) //打印治愈数量
 			fei := provinceName + " 确诊: " + confirmedCount + " 可疑: " + suspectedCount + " 死亡: " + deadCount + " 治愈: " + curedCount
 			submenu.Line(fei).Color("black")
+			//----------
+			city_Count := "china." + c + ".cities.#"
+			city_provinceName := gjson.Get(str, city_Count).String()
+			d, _ := strconv.Atoi(city_provinceName)
+			var e int = d
+			var f int = -1
+
+			for f < e {
+				f++
+				g := strconv.Itoa(f)
+				city_Count := "china." + c + ".cities"
+				city_provinceName := gjson.Get(str, city_Count).String()
+				if city_provinceName == "[]" {
+					break
+				} else {
+
+					Name := "china." + c + ".cities." + g + ".cityName"
+					cityName := gjson.Get(str, Name).String()
+
+					confirmedCount := "china." + c + ".cities." + g + ".confirmedCount"
+					cityconfirmedCount := gjson.Get(str, confirmedCount).String() //确诊"
+					// fmt.Println(cityconfirmedCount)
+
+					suspectedCount := "china." + c + ".cities." + g + ".suspectedCount"
+					citysuspectedCount := gjson.Get(str, suspectedCount).String()
+					// fmt.Println(citysuspectedCount) //疑似病例
+
+					curedCount := "china." + c + ".cities." + g + ".curedCount"
+					citycuredCount := gjson.Get(str, curedCount).String()
+					// fmt.Println(citycuredCount) //治愈
+
+					deadCount := "china." + c + ".cities." + g + ".deadCount"
+					citydeadCount := gjson.Get(str, deadCount).String() //死亡
+					// fmt.Println(citydeadCount)
+
+					city := cityName + " 确诊:" + cityconfirmedCount + " 疑似:" + citysuspectedCount + " 死亡:" + citydeadCount + " 治愈:" + citycuredCount
+
+					subsubmenu := submenu.NewSubMenu()
+					subsubmenu.Line(city).Color("black")
+
+				}
+			}
+
 		}
 
 	})
