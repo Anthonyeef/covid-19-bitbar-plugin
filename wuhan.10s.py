@@ -82,7 +82,9 @@ def main():
 
     if len(targetProvinceName) > 0:
         for province in jsondata:
-            showProvinceInfo(province, textColor)
+            provinceName = province.get('provinceShortName')
+            if provinceName in targetProvinceName:
+                showProvinceInfo(province, textColor)
     else:
         for index in range(5):
             province = jsondata[index]
