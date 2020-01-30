@@ -11,6 +11,7 @@ js版本切换
 
 #### 如何安装插件
 - 在电脑上打开 Bitbar，把本 repo 里的 `wuhan.10s.js` 放入 Bitbar 指定的插件文件夹中(新建文件夹即可)
+- chmod 777 wuhan.10s.js
 - 在状态栏中选中 Bitbar 的图标，点击刷新即可
 
 ---
