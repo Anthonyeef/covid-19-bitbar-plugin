@@ -2,15 +2,16 @@ js版本切换
 
 ### 武汉肺炎病患数据的 Bitbar 插件
 
-<img src="https://i.loli.net/2020/01/30/WKtxIhVFrM5swyT.png" alt="长这样" width="500">
+<img src="https://i.loli.net/2020/01/30/9Nh6yvbZ8q1KAkm.png" alt="长这样" width="500">
 
 #### 前提
 - macOS
 - 安装了 [Bitbar](https://getbitbar.com)
-- 安装了 nodejs，并且 `yarn add global request`
+- 环境依赖 nodejs
 
 #### 如何安装插件
-- 在电脑上打开 Bitbar，把本 repo 里的 `wuhan.10s.js` 放入 Bitbar 指定的插件文件夹中(新建文件夹即可)
+- 在电脑上打开 Bitbar，下载文件，change plugin folder 为 wuhan文件夹
+- 安装依赖，在wuhan-virus-bitbar-plugin 文件打开终端,  ```npm install```
 - 在终端授权 chmod 777 wuhan.10s.js
 - 在状态栏中选中 Bitbar 的图标，点击刷新即可
 
