@@ -18,11 +18,11 @@ import os
 # 填写想看到的省份的名字，如
 # targetProvinceName = {"北京", "湖北", "广东"}
 # 如果不填，默认展示确诊人数前五的省份
-targetProvinceName = {}
+targetProvinceName = {"北京", "重庆", "四川", "上海", "黑龙江"}
 
 # 除了 targetProvinceName 之外，还想额外看到的省份
 # 如果不填则不会展示
-additionProvinceName = {"北京", "广东"}
+additionProvinceName = {"江西", "广东", "湖北"}
 
 # 武汉加油
 
@@ -32,7 +32,7 @@ def showProvinceInfo(province, textColor):
     provinceDeadCount = province.get('deadCount')
     provinceCuredCount = province.get('curedCount')
 
-    displayString = "%s 确: %s 亡: %s 愈: %s" % (
+    displayString = "%s 确: %s; 亡: %s; 愈: %s" % (
         provinceName, provinceConfirmedCount, provinceDeadCount, provinceCuredCount)
     print(displayString)
 
@@ -42,7 +42,7 @@ def showProvinceInfo(province, textColor):
 
     cityList = province.get('cities')
     for city in cityList:
-        cityDataStr = "%s 确：%s 亡：%s 愈：%s" % (city.get('cityName'), city.get(
+        cityDataStr = "%s 确：%s; 亡：%s; 愈：%s" % (city.get('cityName'), city.get(
             'confirmedCount'), city.get('deadCount'), city.get('curedCount'))
         print('--' + cityDataStr + ' | color=' + textColor)
 
@@ -75,8 +75,11 @@ def main():
         chinaDeadCount += province.get('deadCount')
         chinaCuredCount += province.get('curedCount')
 
-    displayString = "全国 确: %s 亡: %s 愈 %s" % (
+    displayString = "全国 确: %s; 亡: %s; 愈 %s" % (
         chinaConfirmCount, chinaDeadCount, chinaCuredCount)
+    print('2019 NCoV')
+    print('---')
+
     print(displayString)
     print('---')
 
@@ -91,7 +94,7 @@ def main():
             provinceName = province.get('provinceShortName')
             if provinceName not in additionProvinceName:
                 showProvinceInfo(province, textColor)
-    
+
     print('---')
 
     for province in jsondata:
