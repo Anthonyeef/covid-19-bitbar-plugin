@@ -1,6 +1,8 @@
+js版本切换
+
 ### 武汉肺炎病患数据的 Bitbar 插件
 
-<img src="https://sm.ms/image/WKtxIhVFrM5swyT" alt="长这样" width="500">
+<img src="https://i.loli.net/2020/01/30/WKtxIhVFrM5swyT.png" alt="长这样" width="500">
 
 #### 前提
 - macOS
