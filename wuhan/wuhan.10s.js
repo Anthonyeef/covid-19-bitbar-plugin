@@ -35,6 +35,7 @@ function common(command, cwd) {
         },(err, stdout, stderr) => {
             if (err) {
                 res('Light');
+                return;
             }
             res(stdout);
         });
