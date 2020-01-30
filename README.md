@@ -1,6 +1,6 @@
 ### 武汉肺炎病患数据的 Bitbar 插件
 
-<img src="https://tva1.sinaimg.cn/large/006tNbRwly1gbchjabjxrj30si0pu1kx.jpg" alt="长这样" width="500">
+![武汉肺炎病患数据的 Bitbar 插件截图](wuhan.png)
 
 #### 前提
 - macOS
