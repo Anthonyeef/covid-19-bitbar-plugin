@@ -32,6 +32,7 @@ if (Number(bitBarDarkMode)) {
 
 let content = null; // page content
 let info = null; // userful info
+let total_from_title = null;
 
 /**
  * request dxy page content
@@ -46,6 +47,12 @@ function getInfo() {
         }
     }, function (error, response, body) {
         if (!error) {
+            body.replace(/<script id="getStatisticsService">(.*?)<\/script>/ig, function (_, js) {
+                total_from_title = js;
+            });
+            total_from_title.replace(/try { window.getStatisticsService =(.*?)}catch/ig, function (_, obj) {
+                total_from_title = JSON.parse(obj);
+            });
             body.replace(/<script id="getAreaStat">(.*?)<\/script>/ig, function (_, js) {
                 content = js;
             });
@@ -120,7 +127,7 @@ function renderProvince(province) {
  */
 function render(info) {
     let total_China = pick(info);
-    console.log(`全国：${total_China.confirmed} 怀疑：${total_China.suspected} 治愈: ${total_China.cured} 死亡：${total_China.dead} | color=${textColor}`);
+    console.log(`全国：${total_from_title.confirmedCount} 疑：${total_from_title.suspectedCount} 愈: ${total_from_title.curedCount} 亡：${total_from_title.deadCount} | color=${textColor}`);
     console.log("---");
 
     if (targetProvinceName.length > 0) {
