@@ -11,6 +11,11 @@
 - 在电脑上打开 Bitbar，把本 repo 里的 `wuhan.10s.py` 放入 Bitbar 指定的插件文件夹中
 - 在状态栏中选中 Bitbar 的图标，点击刷新即可
 
+> 如果安装后未显示结果，且点击菜单栏图标后看到 ‘launch path not accessible’
+> 请执行：
+> `chmod +x wuhan.10s.py`
+> 然后点击图标，再选择 Preferences > Refresh All
+
 ---
 
 #### 一些客制化的小功能
