@@ -11,8 +11,8 @@
 //  <bitbar.abouturl>https://github.com/ChenYCL/wuhan-virus-bitbar-plugin</bitbar.abouturl>
 
 
-var request = require("request");
-var os = require("os");
+let request = require("request");
+let {exec} = require('child_process');
 
 const showOtherCountry = true; // show other country
 const targetProvinceName = [
@@ -20,19 +20,40 @@ const targetProvinceName = [
     "山东", "河南", "湖北", "湖南", "广东", "广西", "海南", "重庆", "四川", "贵州", "云南", "西藏", "陕西", "甘肃", "青海",
     "宁夏", "新疆"
 ];
-
-
-let bitBarDarkMode = process.env.BitBar;
-let textColor = 'white';
-if (Number(bitBarDarkMode)) {
-    textColor = 'black'
-}
-
-
+let textColor = 'white'; // default color
+let mode = null; // macOs theme mode
 let content = null; // page content
 let info = null; // userful info
 let total_from_title = null; // title total
 let other_country = null; // other country data
+const cmdStr = 'defaults read -g AppleInterfaceStyle';
+
+function common(command, cwd) {
+    return new Promise((res, rej) => {
+        exec(command, {
+            cwd : cwd,
+        },(err, stdout, stderr) => {
+            if (err) {
+                res('Light');
+            }
+            res(stdout);
+        });
+    });
+}
+
+function getDarkMode(cwd){
+    return common(cmdStr, cwd);
+}
+async function start (){
+    mode = await getDarkMode(__dirname);
+    if(mode === 'Light'){
+        textColor = 'black';
+    }
+    await getInfo();
+}
+
+start();
+
 
 /**
  * request dxy page content
@@ -183,5 +204,4 @@ function render(info) {
 
 }
 
-getInfo();
 
