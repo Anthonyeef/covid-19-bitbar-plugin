@@ -48,6 +48,7 @@ func main() {
 	if err != nil {
 		log.Fatalln(err)
 	}
+	//全国------------------------------------------------------------------------------------------
 	dom.Find("#getStatisticsService").Each(func(i int, selection *goquery.Selection) {
 		str := selection.Text()
 		str = strings.Replace(str, "try { window.getStatisticsService = ", ``, -1)
@@ -60,6 +61,9 @@ func main() {
 		all := " 全国确诊:" + all_confirmedCount + " 疑似:" + all_suspectedCount + " 死亡:" + all_deadCount + " 治愈:" + all_curedCount
 		app.StatusLine(all)
 	})
+	//全国------------------------------------------------------------------------------------------
+	//省份------------------------------------------------------------------------------------------
+
 	dom.Find("#getAreaStat").Each(func(i int, selection *goquery.Selection) {
 		str := selection.Text()
 		str = strings.Replace(str, "try { window.getAreaStat = [", `{"china": [`, -1)
@@ -139,6 +143,51 @@ func main() {
 		}
 
 	})
+	//省份---
 
+	//--------------------------------------------------------------------------------------------------------------------------
+	// 其他国家
+	dom.Find("#getListByCountryTypeService2").Each(func(i int, selection *goquery.Selection) {
+		str := selection.Text()
+		str = strings.Replace(str, "try { window.getListByCountryTypeService2 = [{", `{"other-Country": [{`, -1)
+		str = strings.Replace(str, "}]}catch(e){}", `]}`, -1)
+		// fmt.Println(str)
+		var Country_all int = 17
+		var C_all int = -1
+		submenu.Line("其他国家").Color("black")
+		for C_all < Country_all {
+			C_all++
+			Count_all := strconv.Itoa(C_all)
+
+			Country_Count := "other-Country." + Count_all + ".provinceName"
+			Country_provinceName := gjson.Get(str, Country_Count).String()
+			// fmt.Println(Country_provinceName)
+			// 国家名字
+			Country_confirmedCount := "other-Country." + Count_all + ".confirmedCount"
+			confirmedCount := gjson.Get(str, Country_confirmedCount).String()
+			// fmt.Println(confirmedCount)
+			// 确诊人数
+
+			Country_suspectedCount := "other-Country." + Count_all + ".suspectedCount"
+			suspectedCount := gjson.Get(str, Country_suspectedCount).String()
+			// fmt.Println(suspectedCount)
+			// 疑似人数
+			Country_deadCount := "other-Country." + Count_all + ".deadCount"
+			deadCount := gjson.Get(str, Country_deadCount).String()
+			// 死亡人数.
+
+			Country_curedCount := "other-Country." + Count_all + ".curedCount"
+			curedCount := gjson.Get(str, Country_curedCount).String()
+			// 治愈人数
+			Country := Country_provinceName + " 确诊:" + confirmedCount + " 疑似:" + suspectedCount + " 死亡:" + deadCount + " 治愈:" + curedCount
+			// fmt.Println(Country)
+			subsubmenu := submenu.NewSubMenu()
+			subsubmenu.Line(Country).Color("black")
+
+		}
+
+	})
+	//--------------------------------------------------------------------------------------------------------------------------
+	// 其他国家
 	app.Render()
 }
