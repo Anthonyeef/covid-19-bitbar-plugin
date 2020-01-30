@@ -75,12 +75,13 @@ def main():
         chinaDeadCount += province.get('deadCount')
         chinaCuredCount += province.get('curedCount')
 
-    displayString = "全国 确: %s; 亡: %s; 愈 %s" % (
-        chinaConfirmCount, chinaDeadCount, chinaCuredCount)
     print('2019 NCoV')
     print('---')
+    
+    displayString = "全国 确: %s; 亡: %s; 愈 %s" % (
+        chinaConfirmCount, chinaDeadCount, chinaCuredCount)
 
-    print(displayString)
+    print(displayString + ' | color=' + textColor)
     print('---')
 
     if len(targetProvinceName) > 0:
