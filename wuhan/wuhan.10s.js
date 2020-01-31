@@ -162,7 +162,6 @@ function renderProvince(province) {
  * render
  */
 function render(info) {
-    let total_China = pick(info);
     console.log(`全国：${total_from_title.confirmedCount} 疑：${total_from_title.suspectedCount} 愈: ${total_from_title.curedCount} 亡：${total_from_title.deadCount} | color=${textColor}`);
     console.log("---");
 
