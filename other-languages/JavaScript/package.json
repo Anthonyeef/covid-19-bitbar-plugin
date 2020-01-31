@@ -1,0 +1,23 @@
+{
+  "name": "wuhan-virus-bitbar-plugin",
+  "version": "1.0.0",
+  "description": "",
+  "main": "wuhan/wuhan.10s.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChenYCL/wuhan-virus-bitbar-plugin.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ChenYCL/wuhan-virus-bitbar-plugin/issues"
+  },
+  "homepage": "https://github.com/ChenYCL/wuhan-virus-bitbar-plugin#readme",
+  "dependencies": {
+    "request": "^2.88.0"
+  }
+}
