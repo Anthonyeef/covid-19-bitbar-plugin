@@ -21,18 +21,6 @@ func main() {
 
 	submenu := app.NewSubMenu()
 
-	// submenu.Line(fmt.Sprintf("a")).Color("black")
-
-	// submenu.Line(fmt.Sprintf("b")).Color("black")
-	// subsubmen := submenu.NewSubMenu()
-	// subsubmen.Line(" A").Color("black")
-
-	// submenu.Line(fmt.Sprintf("c")).Color("black")
-	// subsubmenu := submenu.NewSubMenu()
-	// subsubmenu.Line(" A").Color("black")
-	// subsubmenu.Line(" c").Color("black")
-	// subsubmenu.Line(" a").Color("black")
-
 	resp, err := http.Get("https://3g.dxy.cn/newh5/view/pneumonia")
 	if err != nil {
 		fmt.Println("http get error", err)
