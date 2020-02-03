@@ -21,9 +21,47 @@ targetProvinceName = {}
 
 # 除了 targetProvinceName 之外，还想额外看到的省份
 # 如果不填则不会展示
-additionProvinceName = {"北京", "广东"}
+additionProvinceName = {"北京", "广东", "上海"}
 
 # 武汉加油
+
+
+def showCountryInfo(dataEntry, textColor):
+    provinceList = dataEntry.get('list')
+
+    countryConfirmCount = dataEntry.get('gntotal')
+    countrySusCount = dataEntry.get('sustotal')
+    countryCureCount = dataEntry.get('curetotal')
+    countryDeathCount = dataEntry.get('deathtotal')
+
+    countryConfirmSum = 0
+    countrySusSum = 0
+    countryCureSum = 0
+    countryDeathSum = 0
+
+    for province in provinceList:
+        countryConfirmSum += int(province.get('value'))
+        countrySusSum += int(province.get('susNum'))
+        countryDeathSum += int(province.get('deathNum'))
+        countryCureSum += int(province.get('cureNum'))
+
+    if countryConfirmSum > int(countryConfirmCount):
+        countryConfirmCount = str(countryConfirmSum)
+
+    if countrySusSum > int(countrySusCount):
+        countrySusCount = str(countrySusSum)
+
+    if countryCureSum > int(countryCureCount):
+        countryCureCount = str(countryCureSum)
+
+    if countryDeathSum > int(countryDeathCount):
+        countryDeathCount = str(countryDeathSum)
+
+    displayString = "全国 确: %s 疑: %s 亡: %s 愈 %s" % (
+        countryConfirmCount, countrySusCount, countryDeathCount, countryCureCount)
+
+    print(displayString)
+    print('---')
 
 
 def showProvinceInfo(province, textColor):
@@ -55,19 +93,9 @@ def main():
 
     jsonData = json.loads(response.text)
     dataEntry = jsonData.get('data')
-
-    countryConfirmCount = dataEntry.get('gntotal')
-    countrySusCount = dataEntry.get('sustotal')
-    countryCureCount = dataEntry.get('curetotal')
-    countryDeathCount = dataEntry.get('deathtotal')
-
-    displayString = "全国 确: %s 疑: %s 亡: %s 愈 %s" % (
-        countryConfirmCount, countrySusCount, countryDeathCount, countryCureCount)
-
-    print(displayString)
-    print('---')
-
     provinceList = dataEntry.get('list')
+
+    showCountryInfo(dataEntry, textColor)
 
     if len(targetProvinceName) > 0:
         for province in provinceList:
@@ -91,3 +119,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
