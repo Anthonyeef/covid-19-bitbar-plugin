@@ -27,7 +27,7 @@
 
 ### 其他语言的实现
 - 发布后陆续收到了一些热心网友的 PR，也一并列举在下： 
-    - [Javascript 版](https://github.com/Anthonyeef/wuhan-virus-bitbar-plugin/pull/7)
+    - [Javascript 版](https://github.com/ChenYCL/wuhan-virus-bitbar-plugin)
     - [Go 版](https://github.com/Anthonyeef/wuhan-virus-bitbar-plugin/pull/5)
 
 ### Q&A
