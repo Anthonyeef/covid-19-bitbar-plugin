@@ -120,3 +120,8 @@ def main():
 if __name__ == "__main__":
     main()
 
+
+print('---')
+print('丁香园疫情地图 | href=https://ncov.dxy.cn/ncovh5/view/pneumonia')
+print('百度疫情地图 | href=https://voice.baidu.com/act/newpneumonia/newpneumonia')
+print('网易疫情地图 | href=http://news.163.com/special/epidemic/')
