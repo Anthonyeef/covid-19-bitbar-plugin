@@ -6,7 +6,7 @@
 菜单栏**滚动**显示 `确诊(+今日新增)`、`疑似(+今日新增)`、`重症(+今日新增)`、`死亡(+今日新增)`、`治愈(+今日新增)`
 下拉菜单显示完整疫情数据、数据更新时间、各省份（可自定义）疫情数据
 
-![bitbar-2019-ncov](/Users/brandon/Downloads/bitbar-2019-ncov.png)
+![bitbar-2019-ncov](img/bitbar-2019-ncov.png)
 
 ##### 运行环境
 - macOS
