@@ -5,7 +5,7 @@
 
 下拉菜单显示完整疫情数据、数据更新时间、各省份（可自定义）疫情数据
 
-<img src="img/bitbar-2019-ncov.png" alt="bitbar-2019-ncov" style="zoom:30%;" />
+<img src="img/bitbar-2019-ncov.png" alt="bitbar-2019-ncov" style="zoom:50%;" />
 
 #### 运行环境
 - macOS
@@ -43,9 +43,9 @@ chmod +x 2019-nCoV.10m.sh
 
 - 打开脚本文件，修改变量 `province` 的值即可，如：
 ```bash
-# 变量值 province 以空格分割
+# province 的变量值，即省份名称以英文逗号(,)分割、用英文双号("")包裹
 # 变量值暂仅支持国内各省、直辖市的名称；可以是简称、也可以是全称，如“湖北省”、“湖北”返回的结果均一致
-province="湖北省 上海市 云南省”
+province='["湖北","上海","云南","贵州","江苏","广西"]'
 ```
 
 ---
