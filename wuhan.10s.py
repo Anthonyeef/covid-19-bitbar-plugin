@@ -17,12 +17,11 @@ import os
 # 填写想看到的省份的名字，如
 # targetProvinceName = {"北京", "湖北", "广东"}
 # 如果不填，默认展示确诊人数前五的省份
-targetProvinceName = {}
+targetProvinceName = {'浙江'}
 
 # 除了 targetProvinceName 之外，还想额外看到的省份
 # 如果不填则不会展示
-additionProvinceName = {"北京", "广东", "上海"}
-# 可选："北京", "广东", "上海", "山东", "江苏", "浙江", "河南", "河北", "香港", "陕西", "湖南", "重庆", "福建", "天津", "云南", "四川", "广西", "安徽", "海南", "江西", "湖北", "山西", "辽宁", "台湾", "黑龙江", "内蒙古", "澳门", "贵州", "青海", "新疆", "西藏", "吉林", "宁夏"
+additionProvinceName = {"北京", "广东", "上海", "山东", "江苏", "河南", "河北", "香港", "陕西", "湖南", "重庆", "福建", "天津", "云南", "四川", "广西", "安徽", "海南", "江西", "湖北", "山西", "辽宁", "台湾", "黑龙江", "内蒙古", "澳门", "贵州", "青海", "新疆", "西藏", "吉林", "宁夏"}
 
 # 武汉加油
 
@@ -97,6 +96,17 @@ def showProvinceInfo(province, textColor):
             'conNum'), city.get('deathNum'), city.get('cureNum'))
         print('--' + cityDataStr + ' | color=' + textColor)
 
+def showGlobalInfo(otherEntry, textColor):
+    globalConfirmCount = otherEntry.get('certain')
+    globalCureCount = otherEntry.get('rescure')
+    globalDeathCount = otherEntry.get('die')
+    globalStr = "全球 确: %s 亡: %s 愈: %s" % (globalConfirmCount, globalDeathCount, globalCureCount)
+    print(globalStr + ' | color=' + textColor)
+    globalAddConfirm = otherEntry.get('certain_inc')
+    globalAddCure = otherEntry.get('rescure_inc')
+    globalAddDeath = otherEntry.get('die_inc')
+    globalAddStr = "全球 确: %s 亡: %s 愈: %s" % (globalAddConfirm, globalAddDeath, globalAddCure)
+    print('--' + globalAddStr + ' | color=' + textColor)
 
 def main():
     bitBarDarkMode = os.getenv('BitBarDarkMode', 0)
@@ -111,9 +121,11 @@ def main():
     jsonData = json.loads(response.text)
     dataEntry = jsonData.get('data')
     add_dailyEntry = dataEntry.get('add_daily')
+    otherEntry = dataEntry.get('othertotal')
     provinceList = dataEntry.get('list')
 
     showCountryInfo(dataEntry, textColor)
+    showGlobalInfo(otherEntry, textColor)
     showDailyInfo(add_dailyEntry, textColor)
 
     if len(targetProvinceName) > 0:
