@@ -23,6 +23,8 @@ targetProvinceName = {'浙江'}
 # 如果不填则不会展示
 additionProvinceName = {"北京", "广东", "上海", "山东", "江苏", "河南", "河北", "香港", "陕西", "湖南", "重庆", "福建", "天津", "云南", "四川", "广西", "安徽", "海南", "江西", "湖北", "山西", "辽宁", "台湾", "黑龙江", "内蒙古", "澳门", "贵州", "青海", "新疆", "西藏", "吉林", "宁夏"}
 
+# 除了中国之外，还想额外看到的国家
+additionCountryName = {"美国", "塞尔维亚", "印度", "俄罗斯", "澳大利亚", "日本"}
 # 武汉加油
 
 
@@ -107,6 +109,21 @@ def showGlobalInfo(otherEntry, textColor):
     globalAddDeath = otherEntry.get('die_inc')
     globalAddStr = "全球 确: %s 亡: %s 愈: %s" % (globalAddConfirm, globalAddDeath, globalAddCure)
     print('--' + globalAddStr + ' | color=' + textColor)
+    
+def showOtherInfo(otherCEntry, textColor):
+    countryName = otherCEntry.get('name')
+    otherConfirmCount = otherCEntry.get('conNum')
+    otherCureCount = otherCEntry.get('cureNum')
+    otherSusCount = otherCEntry.get('susNum')
+    otherDeathCount = otherCEntry.get('deathNum')
+    otherStr = "%s 确: %s 疑: %s 亡: %s 愈: %s" % (countryName, otherConfirmCount, otherSusCount, otherDeathCount, otherCureCount)
+    print(otherStr + ' | color=' + textColor)
+    otherAddConfirm = otherCEntry.get('conadd')
+    otherAddCure = otherCEntry.get('cureadd')
+    otherAddDeath = otherCEntry.get('deathadd')
+    otherAddSus = otherCEntry.get('susadd')
+    otherAddStr = "新增 确: %s 疑: %s 亡: %s 愈: %s" % (otherAddConfirm, otherAddSus, otherAddDeath, otherAddCure)
+    print('--' + otherAddStr + ' | color=' + textColor)
 
 def main():
     bitBarDarkMode = os.getenv('BitBarDarkMode', 0)
@@ -122,11 +139,20 @@ def main():
     dataEntry = jsonData.get('data')
     add_dailyEntry = dataEntry.get('add_daily')
     otherEntry = dataEntry.get('othertotal')
+    otherCEntry = dataEntry.get('otherlist')
     provinceList = dataEntry.get('list')
 
     showCountryInfo(dataEntry, textColor)
     showGlobalInfo(otherEntry, textColor)
     showDailyInfo(add_dailyEntry, textColor)
+
+    if len(additionCountryName) > 0:
+        print('---')
+        for country in otherCEntry:
+            counrtyName = country.get('name')
+            if counrtyName in additionCountryName:
+                showOtherInfo(country, textColor)
+        print('---')
 
     if len(targetProvinceName) > 0:
         for province in provinceList:
