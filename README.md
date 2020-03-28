@@ -1,6 +1,6 @@
 ## 新冠病毒肺炎病患数据的 Bitbar 插件
 
-<img src="https://github.com/SkyYkb/wuhan-virus-bitbar-plugin/raw/master/Screen%20Shot%202020-03-28%20at%2011.08.51.png" alt="长这样" width="500">
+<img src="https://github.com/SkyYkb/covid-19-bitbar-plugin/raw/master/screenshot.png" alt="长这样" width="500">
 
 ### 前提
 - macOS
