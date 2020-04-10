@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/ChenYCL/wuhan-virus-bitbar-plugin#readme",
   "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
+    "nightmare": "^3.0.2",
     "request": "^2.88.0"
   }
 }
