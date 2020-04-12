@@ -100,12 +100,12 @@ def showProvinceInfo(province, textColor):
 
 def showGlobalInfo(otherEntry, textColor):
     globalConfirmCount = otherEntry.get('certain')
-    globalCureCount = otherEntry.get('rescure')
+    globalCureCount = otherEntry.get('recure')
     globalDeathCount = otherEntry.get('die')
     globalStr = "全球 确: %s 亡: %s 愈: %s" % (globalConfirmCount, globalDeathCount, globalCureCount)
     print(globalStr + ' | color=' + textColor)
     globalAddConfirm = otherEntry.get('certain_inc')
-    globalAddCure = otherEntry.get('rescure_inc')
+    globalAddCure = otherEntry.get('recure_inc')
     globalAddDeath = otherEntry.get('die_inc')
     globalAddStr = "全球 确: %s 亡: %s 愈: %s" % (globalAddConfirm, globalAddDeath, globalAddCure)
     print('--' + globalAddStr + ' | color=' + textColor)
@@ -142,9 +142,9 @@ def main():
     otherCEntry = dataEntry.get('otherlist')
     provinceList = dataEntry.get('list')
 
+    showDailyInfo(add_dailyEntry, textColor)
     showCountryInfo(dataEntry, textColor)
     showGlobalInfo(otherEntry, textColor)
-    showDailyInfo(add_dailyEntry, textColor)
 
     if len(additionCountryName) > 0:
         print('---')
