@@ -75,7 +75,6 @@ def showDailyInfo(add_dailyEntry, textColor):
     displayAddString = "全国新增 确: %s 疑: %s 亡: %s 愈: %s" % (
         dailyAddConfirm, dailyAddSus, dailyAddDeath, dailyAddCure)
     print(displayAddString + ' | color=' + textColor)
-    print('---')
 
 def showProvinceInfo(province, textColor):
     provinceName = province.get('name')
@@ -142,8 +141,8 @@ def main():
     otherCEntry = dataEntry.get('otherlist')
     provinceList = dataEntry.get('list')
 
-    showDailyInfo(add_dailyEntry, textColor)
     showCountryInfo(dataEntry, textColor)
+    showDailyInfo(add_dailyEntry, textColor)
     showGlobalInfo(otherEntry, textColor)
 
     if len(additionCountryName) > 0:
