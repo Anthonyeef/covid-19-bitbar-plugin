@@ -1,4 +1,4 @@
-## 新冠病毒肺炎病患数据的 Bitbar 插件
+## 新冠病患数据的 Bitbar 插件
 
 <img src="https://github.com/SkyYkb/covid-19-bitbar-plugin/raw/master/screenshot.png" alt="长这样" width="500">
 
