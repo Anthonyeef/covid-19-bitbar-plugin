@@ -6,9 +6,9 @@
 # <bitbar.author>Yifen Wu</bitbar.author>
 # <bitbar.author.github>Anthonyeef</bitbar.author.github>
 # <bitbar.desc>Wuhan pneumonia is spreading in the world, mainly in China. This plugin will show information (people having pneumonia, people dead because of pneumonia, and people who are cured from this pneumonia) for each province in China.</bitbar.desc>
-# <bitbar.image>https://tva1.sinaimg.cn/large/006tNbRwly1gbccqabcaoj30tw0lc4l6.jpg</bitbar.image>
+# <bitbar.image>https://raw.githubusercontent.com/SkyYkb/covid-19-bitbar-plugin/master/screenshot.png</bitbar.image>
 # <bitbar.dependencies>python</bitbar.dependencies>
-# <bitbar.abouturl>https://github.com/Anthonyeef/wuhan-virus-bitbar-plugin</bitbar.abouturl>
+# <bitbar.abouturl>https://github.com/SkyYkb/wuhan-virus-bitbar-plugin</bitbar.abouturl>
 
 import requests
 import json
@@ -21,7 +21,7 @@ targetProvinceName = {'浙江'}
 
 # 除了 targetProvinceName 之外，还想额外看到的省份
 # 如果不填则不会展示
-additionProvinceName = {"北京", "广东", "上海"}
+additionProvinceName = {"北京", "广东", "上海", "山东", "江苏", "河南", "河北", "香港", "陕西", "湖南", "重庆", "福建", "天津", "云南", "四川", "广西", "安徽", "海南", "江西", "湖北", "山西", "辽宁", "台湾", "黑龙江", "内蒙古", "澳门", "贵州", "青海", "新疆", "西藏", "吉林", "宁夏"}
 
 # 除了中国之外，还想额外看到的国家
 additionCountryName = {"美国", "塞尔维亚", "印度", "俄罗斯", "澳大利亚", "日本"}
@@ -60,11 +60,10 @@ def showCountryInfo(dataEntry, textColor):
     if countryDeathSum > int(countryDeathCount):
         countryDeathCount = str(countryDeathSum)
 
-    displayString = "全国 现: %s 确: %s 疑: %s 亡: %s 愈: %s" % (
-        countryConfirmExist, countryConfirmCount, countrySusCount, countryDeathCount, countryCureCount)
+    displayString = "全国 现: %s 确: %s 疑: %s 亡: %s 愈: %s | color=" % (
+        countryConfirmExist, countryConfirmCount, countrySusCount, countryDeathCount, countryCureCount) + textColor
 
     print(displayString)
-    print('---')
 
 def showDailyInfo(add_dailyEntry, textColor):
 
@@ -141,6 +140,8 @@ def main():
     otherCEntry = dataEntry.get('otherlist')
     provinceList = dataEntry.get('list')
 
+    print('疫情')
+    print('---')
     showCountryInfo(dataEntry, textColor)
     showDailyInfo(add_dailyEntry, textColor)
     showGlobalInfo(otherEntry, textColor)
