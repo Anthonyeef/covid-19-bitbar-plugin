@@ -100,7 +100,8 @@ def showGlobalInfo(otherEntry, textColor):
     globalConfirmCount = otherEntry.get('certain')
     globalCureCount = otherEntry.get('recure')
     globalDeathCount = otherEntry.get('die')
-    globalStr = "全球 确: %s 亡: %s 愈: %s" % (globalConfirmCount, globalDeathCount, globalCureCount)
+    globalNowConfirmedCount = otherEntry.get('ecertain')
+    globalStr = "全球 确: %s 亡: %s 愈: %s 现: %s" % (globalConfirmCount, globalDeathCount, globalCureCount, globalNowConfirmedCount)
     print(globalStr + ' | color=' + textColor)
     globalAddConfirm = otherEntry.get('certain_inc')
     globalAddCure = otherEntry.get('recure_inc')
@@ -114,7 +115,8 @@ def showOtherInfo(otherCEntry, textColor):
     otherCureCount = otherCEntry.get('cureNum')
     otherSusCount = otherCEntry.get('susNum')
     otherDeathCount = otherCEntry.get('deathNum')
-    otherStr = "%s 确: %s 疑: %s 亡: %s 愈: %s" % (countryName, otherConfirmCount, otherSusCount, otherDeathCount, otherCureCount)
+    otherNowConfirmedCount = otherCEntry.get('econNum')
+    otherStr = "%s 确: %s 疑: %s 亡: %s 愈: %s 现: %s" % (countryName, otherConfirmCount, otherSusCount, otherDeathCount, otherCureCount, otherNowConfirmedCount)
     print(otherStr + ' | color=' + textColor)
     otherAddConfirm = otherCEntry.get('conadd')
     otherAddCure = otherCEntry.get('cureadd')
@@ -140,7 +142,7 @@ def main():
     otherCEntry = dataEntry.get('otherlist')
     provinceList = dataEntry.get('list')
 
-    print('疫情')
+    print('新冠疫情')
     print('---')
     showCountryInfo(dataEntry, textColor)
     showDailyInfo(add_dailyEntry, textColor)
@@ -178,7 +180,8 @@ def main():
     print('百度疫情地图 | href=https://voice.baidu.com/act/newpneumonia/newpneumonia')
     print('网易疫情地图 | href=http://news.163.com/special/epidemic/')
     print('知乎疫情地图 | href=https://www.zhihu.com/2019-nCoV/trends#map')
-
+    print('---')
+    print('刷新... | refresh=true')
 
 if __name__ == "__main__":
     main()
