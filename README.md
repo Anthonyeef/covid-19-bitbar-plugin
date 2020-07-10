@@ -1,3 +1,8 @@
+## 此fork与原版的不同
+增加了全球、其他国家、现存数量、每日增减的数据。国内后疫情时代，我们更希望关注的大多是世界疫情。
+
+PR其实发了，但是原作者迟迟不merge，故自己写了。希望原作者如果看到请merge一下～
+
 ## 新冠病患数据的 Bitbar 插件
 
 <img src="https://github.com/SkyYkb/covid-19-bitbar-plugin/raw/master/screenshot.png" alt="长这样" width="500">
