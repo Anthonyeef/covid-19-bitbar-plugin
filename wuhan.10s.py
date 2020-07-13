@@ -1,4 +1,4 @@
-#!/usr/local/bin/python3
+#!/usr/bin/python3
 # coding=utf-8
 
 # <bitbar.title>Wuhan pneumonia data</bitbar.title>
@@ -18,11 +18,11 @@ import time
 # 填写想看到的省份的名字，如
 # targetProvinceName = {"北京", "湖北", "广东"}
 # 如果不填，默认展示确诊人数前五的省份
-targetProvinceName = {'浙江'}
+targetProvinceName = {'浙江', "北京", "广东", "上海", "山东"}
 
 # 除了 targetProvinceName 之外，还想额外看到的省份
 # 如果不填则不会展示
-additionProvinceName = {"北京", "广东", "上海", "山东", "江苏", "河南", "河北", "香港", "陕西", "湖南", "重庆", "福建", "天津", "云南", "四川", "广西", "安徽", "海南", "江西", "湖北", "山西", "辽宁", "台湾", "黑龙江", "内蒙古", "澳门", "贵州", "青海", "新疆", "西藏", "吉林", "宁夏"}
+additionProvinceName = {"江苏", "河南", "河北", "香港", "陕西", "湖南", "重庆", "福建", "天津", "云南", "四川", "广西", "安徽", "海南", "江西", "湖北", "山西", "辽宁", "台湾", "黑龙江", "内蒙古", "澳门", "贵州", "青海", "新疆", "西藏", "吉林", "宁夏"}
 
 # 除了中国之外，还想额外看到的国家
 additionCountryName = {"美国", "塞尔维亚", "印度", "俄罗斯", "澳大利亚", "日本"}
@@ -97,8 +97,9 @@ def showProvinceInfo(province, textColor):
             'conNum'), city.get('deathNum'), city.get('cureNum'))
         print('--' + cityDataStr + ' | color=' + textColor)
 
-def showGlobalInfo(otherEntry, textColor):
-    print('COVID-19 全球疫情数据统计 @%s | color=gray' % time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time())))
+def showGlobalInfo(dataEntry, otherEntry, textColor):
+    dataTime = dataEntry.get('cachetime')
+    print('COVID-19 全球疫情数据统计 @%s | color=gray' % dataTime)
     globalConfirmCount = otherEntry.get('certain')
     globalCureCount = otherEntry.get('recure')
     globalDeathCount = otherEntry.get('die')
@@ -148,7 +149,7 @@ def main():
 
     print('新冠疫情')
     print('---')
-    showGlobalInfo(otherEntry, textColor)
+    showGlobalInfo(dataEntry, otherEntry, textColor)
     showCountryInfo(dataEntry, textColor)
     showDailyInfo(add_dailyEntry, textColor)
 
